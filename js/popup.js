@@ -3,8 +3,8 @@ var addIcon = function(url, size, time) {
 
 	// set src and size
 	$(image).attr("src", url);
-	$(image).css("width", size * 50+30);
-	$(image).css("height", size * 50+30);
+	$(image).css("width", size * 50 + 30);
+	$(image).css("height", size * 50 + 30);
 	$(image).attr("title", time);
 	$(image).addClass("tooltip");
 	// append to body
@@ -37,7 +37,7 @@ function searchComplete() {
 
 
 		// var newImg = document.createElement('img');
-		addIcon(result.url, search[index].scale, "22:30");
+		addIcon(result.url, search[index].scale, search[index].time +"min");
 		index = index + 1;
 
 		isSearchAvailable = true;
@@ -69,44 +69,87 @@ $(function() {
 	index = 0;
 
 
-	search = [{
-		search: "facebook icon",
-		scale: 1
-	}, {
-		search: "google icon",
-		scale: 0.05
-	}, {
-		search: "reddit icon",
-		scale: 0.7
-	}, {
-		search: "twitter icon",
-		scale: 0.3
-	}, {
-		search: "illinois icon",
-		scale: 0.9
-	}];
+	// search = [{
+	// 	search: "facebook icon",
+	// 	scale: 1,
+	// 	time: ""
+	// }, {
+	// 	search: "google icon",
+	// 	scale: 0.05
+	// }, {
+	// 	search: "reddit icon",
+	// 	scale: 0.7
+	// }, {
+	// 	search: "twitter icon",
+	// 	scale: 0.3
+	// }, {
+	// 	search: "illinois icon",
+	// 	scale: 0.9
+	// }];
 
-	var fun = function(array) {
-		// var index=0;
-		return function() {
-			if (isSearchAvailable) {
-				if (index < array.length) {
-					imageSearch.execute(array[index].search);
-
-					isSearchAvailable = false;
-				} else {
-					//break out of intervarl
-					clearInterval(intervalID);
-					$('.tooltip').tooltipster();
-				}
-
-			}
+	chrome.storage.local.set({
+		pages: {
+			"google.com": "300",
+			"facebook.com": "200"
 		}
-	}
+	}, null);
 
-	intervalID = setInterval(fun(search), 50);
 
+	var getDataAndRender = function(val) {
+
+
+		if (val) {
+
+			// var keys = [];
+			// for (var k in val) keys.push(k);
+			//
+
+			// total up the time 
+			val=val.pages;
+			total = 0;
+			for (var k in val) {
+				total = total + parseInt(val[k]);
+			}
+
+			search = [];
+
+			for (var k in val) {
+
+				search.push({
+					search: k+ " icon",
+					time: val[k],
+					scale: parseInt(val[k]) / total
+
+				});
+			}
+
+
+
+			// var fun = function(array) {
+			// 	// var index=0;
+			// 	// 
+			var intervalfun = function() {
+				if (isSearchAvailable) {
+					if (index < search.length) {
+						imageSearch.execute(search[index].search);
+
+						isSearchAvailable = false;
+					} else {
+						//break out of intervarl
+						clearInterval(intervalID);
+						$('.tooltip').tooltipster();
+					}
+
+				}
+			}
+
+			intervalID = setInterval(intervalfun, 50);
+		} else {
+			alert("no data retrived from local storage");
+		}
+	};
+
+	chrome.storage.local.get("pages", getDataAndRender);
 
 
 });
-
