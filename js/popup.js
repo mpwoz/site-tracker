@@ -37,7 +37,7 @@ function searchComplete() {
 
 
 		// var newImg = document.createElement('img');
-		addIcon(result.url, search[index].scale, search[index].time +"min");
+		addIcon(result.url, search[index].scale, search[index].time +"ms");
 		index = index + 1;
 
 		isSearchAvailable = true;
@@ -87,12 +87,6 @@ $(function() {
 	// 	scale: 0.9
 	// }];
 
-	chrome.storage.local.set({
-		pages: {
-			"google.com": "300",
-			"facebook.com": "200"
-		}
-	}, null);
 
 
 	var getDataAndRender = function(val) {
