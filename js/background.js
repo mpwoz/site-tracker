@@ -1,40 +1,45 @@
-var currentTabId, 
-    currentUrl;
+var currentUrl = null, 
+    startTime;
+
 
 var updateCurrentTab = function() {
+  // get the currently active tab in the currently focused window
   chrome.windows.getCurrent(function(win) {
-    chrome.tabs.query({active:true, windowId: win.id}, function(results) {
-      console.log("active tabs", results);
+    chrome.tabs.query({active:true, windowId: win.id}, function(tabs) {
+      var url = getDomain(tabs[0].url);
+
+      // Invalid url
+      if (url == null) {
+        return;
+      }
+
+      // We're still on the same page
+      if (url === currentUrl) {
+        return;
+      }
+
+      var time = new Date().getTime();
+      if (currentUrl != null) {
+        // TODO Store the old page and time spend on it in storage
+        var oldUrl    = currentUrl,
+            timeSpent = time - startTime;
+        console.log("Spent", timeSpent, "ms on", oldUrl);
+      }
+
+      // Update the variables to their current values
+      currentUrl = url;
+      startTime  = time;
+
     });
   });
-  //chrome.tabs.getCurrent(function (tab) {
-  //  console.log(tab);
-  //  currentTabId = tab.id;
-  //  currentUrl   = getDomain(tab.url);
-  //  console.log("Updated", currentTabId, currentUrl);
-  //});
 }
 
 
-// This fires when the active tab changes
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-  updateCurrentTab();
-  //console.log("active tab", activeInfo);
-  //currentTabId = activeInfo.tabId;
-  /*chrome.tabs.get(tabId, function(tab) {
-    console.log(tab);
-  });*/
-});
-
-
-// This fires when a different page is visited
-chrome.history.onVisited.addListener(function (details) {
-  updateCurrentTab();
-  //console.log("history", details);
-  //var domain = getDomain(details.url);
-  //console.log(domain);
-});
-
+// Fire the update function whenever the tab or window changes, 
+// or the user loads a different page in the same tab
+chrome.tabs.onActivated.addListener(updateCurrentTab);
+chrome.history.onVisited.addListener(updateCurrentTab);
+chrome.windows.onFocusChanged.addListener(updateCurrentTab);
 
 
 // Utility function to extract the domain of a url
