@@ -6,8 +6,12 @@
   "version": "1.0",
 
   "permissions": [
+
     "tabs", "<all_urls>",
     "https://*.google.com/"
+
+    "tabs", "<all_urls>", "storage", "webNavigation", "history"
+
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://www.google.com; object-src 'self'",
 
@@ -16,17 +20,17 @@
     "scripts": ["js/background.js"]
   },
 
-  "content_scripts": [
-    {
-      // required to tell it which pages to inject into
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ], 
-      "js": ["js/contentscript.js"],
-      "run_at": "document_end"
-    }
-  ],
+  //"content_scripts": [
+  //  {
+  //    // required to tell it which pages to inject into
+  //    "matches": [
+  //      "http://*/*",
+  //      "https://*/*"
+  //    ], 
+  //    "js": ["js/contentscript.js"],
+  //    "run_at": "document_end"
+  //  }
+  //],
 
   "browser_action": {
     "default_icon": "icon.png",
