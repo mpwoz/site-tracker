@@ -5,6 +5,10 @@
   "description": "This extension tracks which sites you visit.",
   "version": "1.0",
 
+  "permissions": [
+    "tabs", "<all_urls>"
+  ],
+
   "background": {
     "scripts": ["background.js"]
   },
@@ -16,7 +20,8 @@
         "http://*/*",
         "https://*/*"
       ], 
-      "js": ["contentscript.js"]
+      "js": ["contentscript.js"],
+      "run_at": "document_end"
     }
   ],
 

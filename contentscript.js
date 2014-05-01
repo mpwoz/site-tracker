@@ -1,5 +1,8 @@
-var port = chrome.runtime.connect();
+//var port = chrome.runtime.connect();
 
+alert("Hello");
+
+/*
 window.addEventListener("message", function(event) {
   // We only accept messages from ourselves
   if (event.source != window)
@@ -10,7 +13,7 @@ window.addEventListener("message", function(event) {
     port.postMessage(event.data.text);
   }
 }, false);
-
+*/
 
 /* 
 // This is an example script on the webpage
