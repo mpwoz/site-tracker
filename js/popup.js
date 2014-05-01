@@ -5,7 +5,7 @@ var addIcon = function(picUrl, search) {
 	$(image).attr("src", picUrl);
 	$(image).css("width", search.scale * 50 + 30);
 	$(image).css("height", search.scale * 50 + 30);
-	$(image).attr("title", search.url + ": " + search.time + "ms");
+	$(image).attr("title", search.url + ": " + (search.time / 1000) + "s");
 	$(image).addClass("tooltip");
 	// append to body
 	$('#content').append($(image));
@@ -77,6 +77,7 @@ $(function() {
       return 0;
     };
     search.sort(compareTimes);
+    search.reverse(); // We want to see the biggest/most frequent first
 
 
 
