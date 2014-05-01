@@ -17,6 +17,7 @@ chrome.storage.local.get("visitedPages", function(items) {
   console.log("Got from storage:", items);
 });
 
-chrome.storage.local.clear(function() {
+
+/*chrome.storage.local.clear(function() {
   console.log("Cleared");
-});
+});*/
