@@ -1,4 +1,5 @@
 
+
 /*
 
    Example of what the data in storage should look like
@@ -43,5 +44,6 @@ chrome.storage.local.get("visitedPages", function(result) {
     // chrome.storage.local.clear(function() { console.log("Cleared local storage"); });
   });
 });
+
 
 
