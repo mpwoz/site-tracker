@@ -1,25 +1,5 @@
 
 
-/*
-
-   Example of what the data in storage should look like
-
-   { 
-     visitedPages: [
-        {
-          url: "google.com",
-          time: 123251
-        },
-        ...
-     ]
-   }
-
-
-
-*/
-
-
-
 // Get the current page
 var visited = window.location.hostname;
 console.log(visited);
@@ -40,8 +20,6 @@ chrome.storage.local.get("visitedPages", function(result) {
   chrome.storage.local.set({'visitedPages':pages}, function () {
     console.log("Just visited",visited)
 
-    // Uncomment this to clear your storage data
-    // chrome.storage.local.clear(function() { console.log("Cleared local storage"); });
   });
 });
 
