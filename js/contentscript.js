@@ -1,6 +1,3 @@
-// Get the current page
-var visited = window.location.hostname;
-console.log(visited);
 
 /*
 
@@ -19,6 +16,12 @@ console.log(visited);
 
 
 */
+
+
+
+// Get the current page
+var visited = window.location.hostname;
+console.log(visited);
 
 chrome.storage.local.get("visitedPages", function(result) {
   pages = result["visitedPages"];

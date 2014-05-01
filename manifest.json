@@ -6,24 +6,24 @@
   "version": "1.0",
 
   "permissions": [
-    "tabs", "<all_urls>", "storage"
+    "tabs", "<all_urls>", "storage", "webNavigation", "history"
   ],
 
   "background": {
     "scripts": ["js/background.js"]
   },
 
-  "content_scripts": [
-    {
-      // required to tell it which pages to inject into
-      "matches": [
-        "http://*/*",
-        "https://*/*"
-      ], 
-      "js": ["js/contentscript.js"],
-      "run_at": "document_end"
-    }
-  ],
+  //"content_scripts": [
+  //  {
+  //    // required to tell it which pages to inject into
+  //    "matches": [
+  //      "http://*/*",
+  //      "https://*/*"
+  //    ], 
+  //    "js": ["js/contentscript.js"],
+  //    "run_at": "document_end"
+  //  }
+  //],
 
   "browser_action": {
     "default_icon": "icon.png",
