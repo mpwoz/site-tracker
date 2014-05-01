@@ -3,8 +3,9 @@ var addIcon = function(picUrl, search) {
 
 	// set src and size
 	$(image).attr("src", picUrl);
-	$(image).css("width", search.scale * 50 + 30);
-	$(image).css("height", search.scale * 50 + 30);
+  var scale = search.scale * 90 + 20;
+	$(image).css("width", scale);
+	$(image).css("height", scale);
 	$(image).attr("title", search.url + ": " + (search.time / 1000) + "s");
 	$(image).addClass("tooltip");
 	// append to body
