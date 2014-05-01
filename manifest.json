@@ -10,7 +10,7 @@
   ],
 
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["js/background.js"]
   },
 
   "content_scripts": [
@@ -20,7 +20,7 @@
         "http://*/*",
         "https://*/*"
       ], 
-      "js": ["contentscript.js"],
+      "js": ["js/contentscript.js"],
       "run_at": "document_end"
     }
   ],
