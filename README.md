@@ -20,4 +20,4 @@ Greg Blaszczuk: Displaying site icons scaled based on time spent on each. Queryi
                   images to get high-quality icons for each site.
 
 
-### See the source on github at (https://github.com/mpwoz/site-tracker)[https://github.com/mpwoz/site-tracker]
+### See the source on github at [github.com/mpwoz/site-tracker](https://github.com/mpwoz/site-tracker)
