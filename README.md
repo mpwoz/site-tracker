@@ -18,3 +18,6 @@ Martin Wozniewicz: Monitoring tab/page changes and storing the total time spent 
 
 Greg Blaszczuk: Displaying site icons scaled based on time spent on each. Querying google
                   images to get high-quality icons for each site.
+
+
+### See the source on github at (https://github.com/mpwoz/site-tracker)[https://github.com/mpwoz/site-tracker]
