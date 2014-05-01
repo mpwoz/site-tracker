@@ -6,13 +6,17 @@
   "version": "1.0",
 
   "background": {
-    "matches": ["*"], // required to tell it which pages to inject into
     "scripts": ["background.js"]
   },
 
   "content_scripts": [
     {
-      "js": ["contentScript.js"]
+      // required to tell it which pages to inject into
+      "matches": [
+        "http://*/*",
+        "https://*/*"
+      ], 
+      "js": ["contentscript.js"]
     }
   ],
 
